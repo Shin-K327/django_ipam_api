@@ -64,9 +64,19 @@ class V4NetworkSerializer(serializers.ModelSerializer):
 # ToDO: IPv4アドレスを逆参照してアドレス一覧を引っ張ってきてフィールドに格納する処理を書く
 class V4NetworkDetailSerializer(serializers.ModelSerializer):
 
+    ipv4_address_list = serializers.SerializerMethodField()
+
     class Meta:
         model = V4Network
-        fields = '__all__'
+        fields = [
+            'id',
+            'network_name',
+            'network_address',
+            'prefix',
+            'description',
+            'created_at',
+            'ipv4_address_list',
+        ]
         extra_kwargs = {
             'network_address': {
                 'read_only': True
@@ -75,6 +85,16 @@ class V4NetworkDetailSerializer(serializers.ModelSerializer):
                 'read_only': True
             },
         }
+
+    def get_ipv4_address_list(self, obj):
+        try:
+            filter_object = Ipv4AddressSerializer(
+                Ipv4Address.objects.all().filter(fore_network_id=obj.id),
+                many=True
+            ).data
+        except:
+            filter_object = []
+        return filter_object
 
 
 class Ipv4AddressSerializer(serializers.ModelSerializer):
