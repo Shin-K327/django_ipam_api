@@ -40,12 +40,14 @@ class Host(models.Model):
             ('L2S', 'L2 Switch'),
             ('L3S', 'L3 Switch'),
             ('RTR', 'Router'),
+            ('UTM', 'UTM'),
         ),
          ),
         ('SVR', (
             ('WEB', 'Web Server'),
             ('MGR', 'Manage Server'),
             ('DNS', 'DNS Server'),
+            ('DHC', 'DHCP Server'),
         ),
          ),
     ]
@@ -64,7 +66,7 @@ class Host(models.Model):
             'unique': '重複するホストネームが存在します'
         }
     )
-    fore_domain = models.ForeignKey(Domain, on_delete=models.PROTECT, null=True)
+    fore_domain = models.ForeignKey(Domain, related_name='hosts', on_delete=models.PROTECT, null=True)
     use_type = models.CharField(choices=HOST_USE_TYPE, max_length=3)
     description = models.TextField(verbose_name='説明', max_length=300, null=True, blank=True)
     created_at = models.DateField(verbose_name='登録日', auto_now_add=True)
@@ -93,7 +95,6 @@ class V4Network(models.Model):
         verbose_name='ネットワークアドレス',
         unique=True,
         max_length=15,
-        # TODO: エラー発生時のメッセージを"IPアドレス"ではなく"ネットワーク"に修正する
         validators=[validate_ipv4_address],
         error_messages={
             'unique': 'ネットワークアドレスの重複は許可されていません'
@@ -133,7 +134,7 @@ class Ipv4Address(models.Model):
         validators=[validate_ipv4_address],
         editable=False,
     )
-    fore_network = models.ForeignKey(V4Network, on_delete=models.CASCADE)
+    fore_network = models.ForeignKey(V4Network, related_name='ips', on_delete=models.CASCADE)
     use_type = models.IntegerField(choices=AddressUseTypeChoices.choices, null=True)
     fore_host = models.ForeignKey(Host, on_delete=models.PROTECT, null=True)
     update_at = models.DateField(verbose_name='変更日', auto_now_add=True)

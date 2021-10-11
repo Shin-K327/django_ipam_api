@@ -6,6 +6,33 @@ from rest_framework import serializers
 from .models import V4Network, Ipv4Address, Domain, Host
 
 
+class Ipv4AddressSerializer(serializers.ModelSerializer):
+
+    fore_network_address = serializers.ReadOnlyField(source='fore_network.network_address')
+    fore_host_name = serializers.ReadOnlyField(source='fore_host.host_name')
+
+    class Meta:
+        model = Ipv4Address
+        fields = [
+            'id',
+            'ipv4_address',
+            'use_type',
+            'update_at',
+            'fore_network',
+            'fore_host',
+            'fore_network_address',
+            'fore_host_name'
+        ]
+        extra_kwargs = {
+            'ipv4_address': {
+                'read_only': True
+            },
+            'fore_network': {
+                'read_only': True
+            },
+        }
+
+
 class V4NetworkSerializer(serializers.ModelSerializer):
 
     hosts = []
@@ -61,10 +88,9 @@ class V4NetworkSerializer(serializers.ModelSerializer):
         self.hosts = [host.__str__() for host in ip_network(f'{network}/{prefix}').hosts()]
 
 
-# ToDO: IPv4アドレスを逆参照してアドレス一覧を引っ張ってきてフィールドに格納する処理を書く
 class V4NetworkDetailSerializer(serializers.ModelSerializer):
 
-    ipv4_address_list = serializers.SerializerMethodField()
+    ips = Ipv4AddressSerializer(many=True, read_only=True)
 
     class Meta:
         model = V4Network
@@ -75,7 +101,7 @@ class V4NetworkDetailSerializer(serializers.ModelSerializer):
             'prefix',
             'description',
             'created_at',
-            'ipv4_address_list',
+            'ips',
         ]
         extra_kwargs = {
             'network_address': {
@@ -86,37 +112,23 @@ class V4NetworkDetailSerializer(serializers.ModelSerializer):
             },
         }
 
-    def get_ipv4_address_list(self, obj):
-        try:
-            filter_object = Ipv4AddressSerializer(
-                Ipv4Address.objects.all().filter(fore_network_id=obj.id),
-                many=True
-            ).data
-        except:
-            filter_object = []
-        return filter_object
-
-
-class Ipv4AddressSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = Ipv4Address
-        fields = '__all__'
-        extra_kwargs = {
-            'ipv4_address': {
-                'read_only': True
-            },
-            'fore_network': {
-                'read_only': True
-            },
-        }
-
 
 class HostSerializer(serializers.ModelSerializer):
 
+    fore_domain_name = serializers.ReadOnlyField(source='fore_domain.domain_name')
+
     class Meta:
         model = Host
-        fields = '__all__'
+        fields = [
+            'id',
+            'host_verbose',
+            'host_name',
+            'fore_domain',
+            'use_type',
+            'description',
+            'created_at',
+            'fore_domain_name'
+        ]
 
 
 class DomainSerializer(serializers.ModelSerializer):
@@ -124,3 +136,20 @@ class DomainSerializer(serializers.ModelSerializer):
     class Meta:
         model = Domain
         fields = '__all__'
+
+
+class DomainDetailSerializer(serializers.ModelSerializer):
+
+    hosts = HostSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Domain
+        fields = [
+            'id',
+            'domain_name',
+            'created_at',
+            'description',
+            'hosts'
+        ]
+
+

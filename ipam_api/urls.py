@@ -22,6 +22,6 @@ urlpatterns = [
     path('ip/<pk>', ipv4_detail_u),
     path('domain/', domain_list_cr),
     path('domain/<pk>', domain_detail_ud),
-    path('hosts/', host_list_cr),
-    path('hosts/<pk>', host_detail_ud),
+    path('host/', host_list_cr),
+    path('host/<pk>', host_detail_ud),
 ]

@@ -4,10 +4,11 @@ from django_filters import rest_framework as filters
 
 from .models import V4Network, Ipv4Address, Domain, Host
 from .serializers import V4NetworkSerializer,\
-    V4NetworkDetailSerializer, \
+    V4NetworkDetailSerializer,\
     Ipv4AddressSerializer,\
     HostSerializer,\
-    DomainSerializer
+    DomainSerializer,\
+    DomainDetailSerializer
 
 
 # Create your views here.
@@ -68,7 +69,7 @@ class DomainListCreateAPIView(generics.ListCreateAPIView):
 
 
 class DomainRetrieveUDAPIView(generics.RetrieveUpdateDestroyAPIView):
-    serializer_class = DomainSerializer
+    serializer_class = DomainDetailSerializer
     queryset = Domain.objects.all()
 
 

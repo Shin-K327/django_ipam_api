@@ -1,0 +1,1214 @@
+{
+  "openapi": "3.0.2",
+  "info": {
+    "title": "",
+    "version": ""
+  },
+  "paths": {
+    "/api/network/": {
+      "get": {
+        "operationId": "listV4Networks",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/V4Network"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "operationId": "createV4Network",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4Network"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/V4Network"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/V4Network"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4Network"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/network/{id}": {
+      "get": {
+        "operationId": "retrieveV4Network",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30cd\u30c3\u30c8\u30ef\u30fc\u30af.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4NetworkDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "put": {
+        "operationId": "updateV4Network",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30cd\u30c3\u30c8\u30ef\u30fc\u30af.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4NetworkDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateV4Network",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30cd\u30c3\u30c8\u30ef\u30fc\u30af.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/V4NetworkDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V4NetworkDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyV4Network",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30cd\u30c3\u30c8\u30ef\u30fc\u30af.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/ip/": {
+      "get": {
+        "operationId": "listIpv4Address",
+        "description": "",
+        "parameters": [
+          {
+            "name": "ipv4_address",
+            "required": false,
+            "in": "query",
+            "description": "ipv4_address",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "use_type",
+            "required": false,
+            "in": "query",
+            "description": "use_type",
+            "schema": {
+              "type": "string",
+              "enum": [
+                1,
+                2,
+                3,
+                4
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Ipv4Address"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/ip/{id}": {
+      "get": {
+        "operationId": "retrieveIpv4Address",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this IPv4\u30a2\u30c9\u30ec\u30b9.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ipv4Address"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "put": {
+        "operationId": "updateIpv4Address",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this IPv4\u30a2\u30c9\u30ec\u30b9.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ipv4Address"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateIpv4Address",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this IPv4\u30a2\u30c9\u30ec\u30b9.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Ipv4Address"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Ipv4Address"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/domain/": {
+      "get": {
+        "operationId": "listDomains",
+        "description": "",
+        "parameters": [
+          {
+            "name": "domain_name",
+            "required": false,
+            "in": "query",
+            "description": "domain_name",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Domain"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "operationId": "createDomain",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Domain"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Domain"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Domain"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Domain"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/domain/{id}": {
+      "get": {
+        "operationId": "retrieveDomain",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30c9\u30e1\u30a4\u30f3.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "put": {
+        "operationId": "updateDomain",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30c9\u30e1\u30a4\u30f3.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateDomain",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30c9\u30e1\u30a4\u30f3.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/DomainDetail"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DomainDetail"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyDomain",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30c9\u30e1\u30a4\u30f3.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/host/": {
+      "get": {
+        "operationId": "listHosts",
+        "description": "",
+        "parameters": [
+          {
+            "name": "host_name",
+            "required": false,
+            "in": "query",
+            "description": "host_name",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "fore_domain",
+            "required": false,
+            "in": "query",
+            "description": "fore_domain",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Host"
+                  }
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "post": {
+        "operationId": "createHost",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Host"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    },
+    "/api/host/{id}": {
+      "get": {
+        "operationId": "retrieveHost",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30db\u30b9\u30c8.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Host"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "put": {
+        "operationId": "updateHost",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30db\u30b9\u30c8.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Host"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "patch": {
+        "operationId": "partialUpdateHost",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30db\u30b9\u30c8.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            },
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Host"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Host"
+                }
+              }
+            },
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      },
+      "delete": {
+        "operationId": "destroyHost",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "A UUID string identifying this \u30db\u30b9\u30c8.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": ""
+          }
+        },
+        "tags": [
+          "api"
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "V4Network": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "network_name": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "network_address": {
+            "type": "string",
+            "maxLength": 15
+          },
+          "prefix": {
+            "type": "integer",
+            "maximum": 31,
+            "minimum": 8
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 300
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "network_name",
+          "network_address",
+          "prefix"
+        ]
+      },
+      "V4NetworkDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "network_name": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "network_address": {
+            "type": "string",
+            "readOnly": true
+          },
+          "prefix": {
+            "type": "integer",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 300
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "ips": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "readOnly": true
+                },
+                "ipv4_address": {
+                  "type": "string",
+                  "readOnly": true
+                },
+                "use_type": {
+                  "enum": [
+                    1,
+                    2,
+                    3,
+                    4
+                  ],
+                  "type": "integer",
+                  "nullable": true,
+                  "minimum": -2147483648,
+                  "maximum": 2147483647
+                },
+                "update_at": {
+                  "type": "string",
+                  "format": "date",
+                  "readOnly": true
+                },
+                "fore_network": {
+                  "type": "string",
+                  "readOnly": true
+                },
+                "fore_host": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "fore_network_address": {
+                  "type": "string",
+                  "readOnly": true
+                },
+                "fore_host_name": {
+                  "type": "string",
+                  "readOnly": true
+                }
+              }
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "network_name"
+        ]
+      },
+      "Ipv4Address": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "ipv4_address": {
+            "type": "string",
+            "readOnly": true
+          },
+          "use_type": {
+            "enum": [
+              1,
+              2,
+              3,
+              4
+            ],
+            "type": "integer",
+            "nullable": true,
+            "minimum": -2147483648,
+            "maximum": 2147483647
+          },
+          "update_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "fore_network": {
+            "type": "string",
+            "readOnly": true
+          },
+          "fore_host": {
+            "type": "string",
+            "nullable": true
+          },
+          "fore_network_address": {
+            "type": "string",
+            "readOnly": true
+          },
+          "fore_host_name": {
+            "type": "string",
+            "readOnly": true
+          }
+        }
+      },
+      "Domain": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "domain_name": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9\\-]+$",
+            "maxLength": 63
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 300
+          }
+        },
+        "required": [
+          "domain_name"
+        ]
+      },
+      "DomainDetail": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "domain_name": {
+            "type": "string",
+            "pattern": "^[a-z0-9][a-z0-9\\-]+$",
+            "maxLength": 63
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 300
+          },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "format": "uuid",
+                  "readOnly": true
+                },
+                "host_verbose": {
+                  "type": "string",
+                  "maxLength": 64
+                },
+                "host_name": {
+                  "type": "string",
+                  "pattern": "^[a-z][a-z0-9\\_]+$",
+                  "maxLength": 15
+                },
+                "fore_domain": {
+                  "type": "string",
+                  "nullable": true
+                },
+                "use_type": {
+                  "enum": [
+                    "L2S",
+                    "L3S",
+                    "RTR",
+                    "UTM",
+                    "WEB",
+                    "MGR",
+                    "DNS",
+                    "DHC"
+                  ],
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string",
+                  "nullable": true,
+                  "maxLength": 300
+                },
+                "created_at": {
+                  "type": "string",
+                  "format": "date",
+                  "readOnly": true
+                },
+                "fore_domain_name": {
+                  "type": "string",
+                  "readOnly": true
+                }
+              },
+              "required": [
+                "host_verbose",
+                "host_name",
+                "use_type"
+              ]
+            },
+            "readOnly": true
+          }
+        },
+        "required": [
+          "domain_name"
+        ]
+      },
+      "Host": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "readOnly": true
+          },
+          "host_verbose": {
+            "type": "string",
+            "maxLength": 64
+          },
+          "host_name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9\\_]+$",
+            "maxLength": 15
+          },
+          "fore_domain": {
+            "type": "string",
+            "nullable": true
+          },
+          "use_type": {
+            "enum": [
+              "L2S",
+              "L3S",
+              "RTR",
+              "UTM",
+              "WEB",
+              "MGR",
+              "DNS",
+              "DHC"
+            ],
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true,
+            "maxLength": 300
+          },
+          "created_at": {
+            "type": "string",
+            "format": "date",
+            "readOnly": true
+          },
+          "fore_domain_name": {
+            "type": "string",
+            "readOnly": true
+          }
+        },
+        "required": [
+          "host_verbose",
+          "host_name",
+          "use_type"
+        ]
+      }
+    }
+  }
+}
