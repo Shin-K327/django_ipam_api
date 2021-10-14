@@ -2,13 +2,20 @@ from rest_framework import status, views, generics, viewsets
 from rest_framework.response import Response
 from django_filters import rest_framework as filters
 
-from .models import V4Network, Ipv4Address, Domain, Host
-from .serializers import V4NetworkSerializer,\
-    V4NetworkDetailSerializer,\
-    Ipv4AddressSerializer,\
-    HostSerializer,\
-    DomainSerializer,\
+from .models import (
+    V4Network,
+    Ipv4Address,
+    Domain,
+    Host
+)
+from .serializers import (
+    V4NetworkSerializer,
+    V4NetworkDetailSerializer,
+    Ipv4AddressSerializer,
+    HostSerializer,
+    DomainSerializer,
     DomainDetailSerializer
+)
 
 
 # Create your views here.

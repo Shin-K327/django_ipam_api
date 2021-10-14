@@ -113,6 +113,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # CORS
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
+    # Parcel devモードのデフォルトポート
     'http://localhost:1234',
     'http://127.0.0.1:1234',
 )

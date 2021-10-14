@@ -21,7 +21,7 @@ class Ipv4AddressSerializer(serializers.ModelSerializer):
             'fore_network',
             'fore_host',
             'fore_network_address',
-            'fore_host_name'
+            'fore_host_name',
         ]
         extra_kwargs = {
             'ipv4_address': {
