@@ -15,6 +15,7 @@ class Ipv4AddressSerializer(serializers.ModelSerializer):
         model = Ipv4Address
         fields = [
             'id',
+            'sort_field',
             'ipv4_address',
             'use_type',
             'update_at',
@@ -73,9 +74,14 @@ class V4NetworkSerializer(serializers.ModelSerializer):
         self.get_hosts(network, prefix)
 
         for host in self.hosts:
+            sort_data = 0
+            for i, octets in enumerate(host.split('.')):
+                sort_data += int(octets) * (10 ** i)
+
             add_hosts.append(Ipv4Address(
                 id=uuid.uuid4(),
                 ipv4_address=host,
+                sort_field=sort_data,
                 fore_network_id=network_instance.id
             ))
 

@@ -118,7 +118,7 @@ class Ipv4Address(models.Model):
     class Meta:
         db_table = 'ipv4address'
         verbose_name = verbose_name_plural = 'IPv4アドレス'
-        ordering = ['ipv4_address']
+        ordering = ['sort_field']
 
     class AddressUseTypeChoices(models.IntegerChoices):
         service = 1, 'service'
@@ -127,6 +127,7 @@ class Ipv4Address(models.Model):
         ha = 4, 'HA'
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4(), editable=False)
+    sort_field = models.IntegerField(null=True, editable=False)
     ipv4_address = models.CharField(
         verbose_name='IPv4アドレス',
         unique=True,
